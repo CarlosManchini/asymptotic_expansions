@@ -8,10 +8,11 @@ Em especial, a expansão de Edgeworth melhora a precisão da aproximação de La
 
 Esses métodos de aproximação nos fornecem a capacidade de reduzir a quantidade de variáveis aleatórias independentes de uma  estimativa e pode gerar resultados mais estáveis, eficientes, interpretáveis e teoricamente válidos. Isso é particularmente importante quando se trabalha com dados complexos e modelos estatísticos, onde a simplicidade e a precisão são considerações cruciais. 
 
-a comparação pelo
 
-Adicionalmente, um aplicativo open-web foi desenvolvido em linguagem Shiny para explorar diferentes cenários da aplicação das aproximações assintóticas para a densidade da normal inversa (*inverse Gaussian*). A comparação é realizada com a versão empírica da densidade e com a distribuição normal garantida pelo Teorema Central do Limite (TCL).  Acesso do **App** disponível em [Shiny App](https://ufsm.shinyapps.io/appig/ "Approximations of the inverse Gaussian distribution").
-
+ ***
+Adicionalmente, um aplicativo open-web foi desenvolvido em linguagem Shiny para explorar diferentes cenários da aplicação das aproximações assintóticas para a densidade da normal inversa (*inverse Gaussian*). A comparação é realizada com a versão empírica da densidade e com a distribuição normal garantida pelo Teorema Central do Limite (TCL). A aplicação possibilita ao usuário criar diferentes cenários e valores paramétricos para testar o comportamento dos métodos.
+  Acesso do **App** disponível em [Shiny App](https://ufsm.shinyapps.io/appig/ "Approximations of the inverse Gaussian distribution").
+***
 #### Distribuição Normal Inversa
 
 
@@ -73,5 +74,40 @@ Observa-se na Figura 2 para $n=1$ que a distribuição normal não consegue capt
 </p>
 
 A Figura 3 representa um cenário atípico para evidenciar novamente a superioridade da aproximação de Edgeworth.
-Após testar a extensão de Edgeworth em diferentes cenários paramétricos pode-se concluir que a aproximação é adequada para representar a distribuição empírica da normal inversa e ainda, na maioria dos casos é superior à aproximação da distribuição normal. 
+Após testar a extensão de Edgeworth em diferentes cenários paramétricos pode-se concluir que a aproximação é adequada para representar a distribuição empírica da normal inversa e ainda pode ser superior à aproximação da distribuição normal em muitos casos. 
 
+#### Expansão ponto de sela
+
+A expansão ponto de sela é introduzida no meio estatístico por Daniels em 1954. Ela possui diversas aplicações, além da usual aproximação de funções, é possível utiliza-lá no cálculo de $p$-valores, determinar limites uniformes com erros relativos sobre o intervalo de variação da distribuição, construção de testes e intervalos de confiança para parâmetros desconhecidos. 
+ A aproximação da função densidade da distribuição normal inversa realizada via expansão ponto de sela destacou-se pela alta precisão. A aproximação pode ser obtida através da família exponencial conjugada definida por 
+
+$$ f(x;\alpha) = \exp \left\lbrace \alpha x - K(\alpha) \right\rbrace f(x). $$
+
+ em que $K$ é a função geradora de cumulantes obtida aplicando o logaritmo na função geradora de momentos e $f(x)$ é a função densidade da distribuição tratada. Com isso, faz-se necessário o conhecimento da função geratriz de cumulantes $K_X(t)$ de $X \sim IG(\mu,\lambda)$, a qual está definida anteriormente.
+
+
+Seja $X_n$, $n \in \mathbb{N}$ variáveis aleatórias independentes distribuídas com densidade normal inversa \eqref{fdp}, definimos $S_n=X_1+X_2+\cdots+X_n$ e $\overline{X_n}=S_n/n$. A aproximação ponto de sela pode ser obtida de diferentes maneiras \cite{Daniels1954}. Neste trabalho é considerado a expansão através do método de Laplace de tal forma que a aproximação da densidade para a média de variáveis aleatórias é dada por
+
+$$
+f_{\bar{X_n}}(x) = \left\lbrace \frac{n}{2\pi K''(\hat{\alpha})} \right\rbrace^{\frac{1}{2}} \exp\left[ \,n \left\lbrace K(\hat{\alpha}) - \hat{\alpha} \bar{x} \right\rbrace \right]. $$
+
+em que $ K''(\hat{\alpha})$ é a derivada de segunda ordem da função geradora de cumulantes. A equação acima é denominada aproximação/expansão ponto de sela para função densidade de $\hat{X}.$ 
+
+Para avaliar o comportamento da aproximação ponto de sela em função da média de um conjunto de variáveis aleatórias com densidade normal inversa, vamos definir e avaliar alguns cenários e apresentar os resultados variando os parâmetros da distribuição e a quantidade de variáveis aleatórias inclusas na aproximação.
+
+<p align="center">
+  <img src="cenario1saddle.png" alt="Figura1" width="650">
+</p>
+
+Observa-se na Figura 2 que  a aproximação demonstrou-se precisa e próxima da densidade empírica para todos $n$. A densidade da distribuição normal não consegue capturar bem o comportamento da distribuição empírica quando o número de variáveis inclusas é baixo. Visualiza-se que conforme aumentamos a quantidade de variáveis aleatórias, a normal melhora seu desempenho.
+
+
+<p align="center">
+  <img src="cenario2saddle.png" alt="Figura1" width="650">
+</p>
+
+A Figura 3 representa um cenário paramétrico não usual na literatura para evidenciar que semelhantemente a cenários "comportados" a aproximação ponto de sela alcança um desempenho adequado. Note que é característico da distribuição normal inversa para valores de $\lambda$ grande, um comportamento que assemelha-se ao da distribuição. Fato este que justifica a maior proximidade da normal com a densidade empírica comparativamente à Figura 2 anterior. 
+
+
+
+Por fim, destaca-se a adequabilidade da expansão ponto de sela nestes cenários para aproximar a média de variáveis aleatórias provindas da distribuição normal inversa. Ademais possibilidades podem ser testadas no aplicativo disponibilizado em [Shiny App](https://ufsm.shinyapps.io/appig/ "Approximations of the inverse Gaussian distribution")  para avaliar as aproximações de Edgeworth e ponto de sela da densidade da normal inversa. Em trabalhos futuros, pretende-se estender o aplicativo com mais aproximações assintóricas e ainda flexibilizar a escolha de diferentes distribuições. 
